@@ -15,7 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-# UN1CA configuration file
+# Aeretrea configuration file
 ROM_VERSION="1.1.6"
 ROM_VERSION+="-$(git rev-parse --short HEAD)"
 ROM_CODENAME="Diamond"

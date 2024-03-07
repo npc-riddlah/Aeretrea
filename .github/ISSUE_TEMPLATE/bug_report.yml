@@ -9,7 +9,7 @@ body:
         Following the placeholders is not necessary as long as the required information is provided.
   - type: input
     attributes:
-      label: "UN1CA version:"
+      label: "Aeretrea version:"
       placeholder: 1.1.0-0391313
     validations:
       required: true

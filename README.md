@@ -2,27 +2,27 @@
   <img loading="lazy" src="readme-res/banner.png"/>
 </h1>
 <p align="center">
-  <a href="https://github.com/BlackMesa123/UN1CA/blob/fourteen/LICENSE"><img loading="lazy" src="https://img.shields.io/github/license/BlackMesa123/UN1CA?style=for-the-badge&logo=github"/></a>
-  <a href="https://github.com/BlackMesa123/UN1CA/commits/fourteen"><img loading="lazy" src="https://img.shields.io/github/last-commit/BlackMesa123/UN1CA/fourteen?style=for-the-badge"/></a>
-  <a href="https://github.com/BlackMesa123/UN1CA/stargazers"><img loading="lazy" src="https://img.shields.io/github/stars/BlackMesa123/UN1CA?style=for-the-badge"/></a>
-  <a href="https://github.com/BlackMesa123/UN1CA/graphs/contributors"><img loading="lazy" src="https://img.shields.io/github/contributors/BlackMesa123/UN1CA?style=for-the-badge"/></a>
-  <a href="https://github.com/BlackMesa123/UN1CA/actions/workflows/build.yml"><img loading="lazy" src="https://img.shields.io/github/actions/workflow/status/BlackMesa123/UN1CA/build.yml?style=for-the-badge"/></a>
+  <a href="https://github.com/Aeretrea/Aeretrea/blob/fourteen/LICENSE"><img loading="lazy" src="https://img.shields.io/github/license/Aeretrea/Aeretrea?style=for-the-badge&logo=github"/></a>
+  <a href="https://github.com/Aeretrea/Aeretrea/commits/fourteen"><img loading="lazy" src="https://img.shields.io/github/last-commit/Aeretrea/Aeretrea/fourteen?style=for-the-badge"/></a>
+  <a href="https://github.com/Aeretrea/Aeretrea/stargazers"><img loading="lazy" src="https://img.shields.io/github/stars/Aeretrea/Aeretrea?style=for-the-badge"/></a>
+  <a href="https://github.com/Aeretrea/Aeretrea/graphs/contributors"><img loading="lazy" src="https://img.shields.io/github/contributors/Aeretrea/Aeretrea?style=for-the-badge"/></a>
+  <a href="https://github.com/Aeretrea/Aeretrea/actions/workflows/build.yml"><img loading="lazy" src="https://img.shields.io/github/actions/workflow/status/Aeretrea/Aeretrea/build.yml?style=for-the-badge"/></a>
 </p>
-<p align="center">UN1CA <i>(/ˈu.ni.ka/)</i> is a work-in-progress custom firmware for Samsung Galaxy devices.</p>
+<p align="center">Aeretrea is the continuation of the UN1CA, a work-in-progress custom firmware for Samsung Galaxy devices.</p>
 
 <p align="center">
-  <a href="https://unica.mesalabs.io">🌐 Website</a>
+  <a href="https://aeretrea.github.io/Aeretrea/">🌐 Website</a>
   •
-  <a href="https://t.me/unicarom">💬 Telegram</a>
+  <a href="https://t.me/Aeretrea">💬 Telegram</a>
 </p>
 
 # Quick links
-- [Supported devices](https://unica.mesalabs.io/devices)
-- [Installation instructions](https://unica.mesalabs.io/guide)
-- [Build UN1CA](https://unica.mesalabs.io/expert/build/)
+- [Supported devices](https://aeretrea.github.io/Aeretrea/devices)
+- [Installation instructions](https://aeretrea.github.io/Aeretrea/guide)
+- [Build Aeretrea](https://aeretrea.github.io/Aeretrea/expert/build/)
 
-# What is UN1CA?
-UN1CA is an open source project which allows you to create a custom One UI-based ROM by automatically downloading/extracting the firmware, applying the required patches and generating a flashable zip/tar package.
+# What is Aeretrea?
+Aeretrea is an open source project which allows you to create a custom One UI-based ROM by automatically downloading/extracting the firmware, applying the required patches and generating a flashable zip/tar package.
 It also includes additional features and tweaks to ensure the best possible experience out of the box.
 
 # Features
@@ -63,7 +63,7 @@ A big thanks goes to the following for their invaluable contributions in no part
 - **[Simon1511](https://github.com/Simon1511)** for his support and some of the device-specific patches
 - **[ananjaser1211](https://github.com/ananjaser1211)** for troubleshooting and his time
 - **[iDrinkCoffee](https://github.com/iDrinkCoffee-TG)** and **[RisenID](https://github.com/RisenID)** for documentation revisioning
-- *All the UN1CA project contributors and testers ❤️*
+- *All the Aeretrea project contributors and testers ❤️*
 
 # Stargazers over time
-[![Stargazers over time](https://starchart.cc/BlackMesa123/UN1CA.svg)](https://starchart.cc/BlackMesa123/UN1CA)
+[![Stargazers over time](https://starchart.cc/Aeretrea/Aeretrea.svg)](https://starchart.cc/Aeretrea/Aeretrea)

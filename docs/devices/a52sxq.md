@@ -5,13 +5,13 @@ parent: Supported devices
 ---
 
 <p align="center">
-  <img loading="lazy" src="/assets/images/a52s.webp"/>
+  <img loading="lazy" src="/Aeretrea/assets/images/a52s.webp"/>
 </p>
 
 # Galaxy A52s 5G (a52sxq)
 {: .pb-4 }
 - Maintainer: [@BlackMesa123](https://github.com/BlackMesa123)
-- Latest version: ![img](https://img.shields.io/github/v/release/BlackMesa123/UN1CA?filter=a52sxq*&style=flat-square&color=89bcff)
+- Latest version: ![img](https://img.shields.io/github/v/release/Aeretrea/Aeretrea?filter=a52sxq*&style=flat-square&color=89bcff)
 - Install method: [Custom recovery]({% link guide/recovery.md %})
 - Requirements: [**Android 14 bootloader**](https://github.com/BlackMesa123/proprietary_vendor_samsung_a52sxq/releases)
 
@@ -48,7 +48,7 @@ parent: Supported devices
 ## How to build
 
 ```bash
-git clone --recurse-submodules https://github.com/BlackMesa123/UN1CA.git && cd UN1CA
+git clone --recurse-submodules https://github.com/Aeretrea/Aeretrea.git && cd Aeretrea
 . ./buildenv.sh a52sxq
 run_cmd make_rom
 ```

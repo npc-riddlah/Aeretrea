@@ -5,13 +5,13 @@ parent: Supported devices
 ---
 
 <p align="center">
-  <img loading="lazy" src="/assets/images/s21fe.png"/>
+  <img loading="lazy" src="/Aeretrea/assets/images/s21fe.png"/>
 </p>
 
 # Galaxy S21 FE 5G (Qualcomm)
 {: .pb-4 }
 - Maintainer: [@glikched](https://github.com/glikched)
-- Latest version: ![img](https://img.shields.io/github/v/release/BlackMesa123/UN1CA?filter=r9q-*&style=flat-square&color=89bcff) ![img](https://img.shields.io/github/v/release/BlackMesa123/UN1CA?filter=r9q2*&style=flat-square&color=89bcff)
+- Latest version: ![img](https://img.shields.io/github/v/release/Aeretrea/Aeretrea?filter=r9q-*&style=flat-square&color=89bcff) ![img](https://img.shields.io/github/v/release/Aeretrea/Aeretrea?filter=r9q2*&style=flat-square&color=89bcff)
 - Install method: [Custom recovery]({% link guide/recovery.md %})
 - Requirements: **Android 14 bootloader**
 
@@ -44,7 +44,7 @@ parent: Supported devices
 ## How to build
 
 ```bash
-git clone --recurse-submodules https://github.com/BlackMesa123/UN1CA.git && cd UN1CA
+git clone --recurse-submodules https://github.com/Aeretrea/Aeretrea.git && cd Aeretrea
 . ./buildenv.sh r9q
 run_cmd make_rom
 run_cmd cleanup apktool work_dir

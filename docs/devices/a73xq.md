@@ -5,13 +5,13 @@ parent: Supported devices
 ---
 
 <p align="center">
-  <img loading="lazy" src="/assets/images/a73.webp"/>
+  <img loading="lazy" src="/Aeretrea/assets/images/a73.webp"/>
 </p>
 
 # Galaxy A73 5G (a73xq)
 {: .pb-4 }
 - Maintainer: [@Asleeppp](https://github.com/Asleeppp)
-- Latest version: ![img](https://img.shields.io/github/v/release/BlackMesa123/UN1CA?filter=a73xq*&style=flat-square&color=89bcff)
+- Latest version: ![img](https://img.shields.io/github/v/release/Aeretrea/Aeretrea?filter=a73xq*&style=flat-square&color=89bcff)
 - Install method: [Custom recovery]({% link guide/recovery.md %})
 - Requirements: [**Android 14 bootloader**](https://github.com/Simon1511/samsung-sm7325-fw/releases)
 
@@ -47,7 +47,7 @@ parent: Supported devices
 ## How to build
 
 ```bash
-git clone --recurse-submodules https://github.com/BlackMesa123/UN1CA.git && cd UN1CA
+git clone --recurse-submodules https://github.com/Aeretrea/Aeretrea.git && cd Aeretrea
 . ./buildenv.sh a73xq
 run_cmd make_rom
 ```

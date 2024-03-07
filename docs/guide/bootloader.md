@@ -8,8 +8,8 @@ nav_order: 1
 # Unlocking the bootloader
 {: .pb-2 }
 <p align="center">
-  <img loading="lazy" src="/assets/images/dev-options.jpg" width="30%"/>
-  <img loading="lazy" src="/assets/images/bl-unlock.png" width="30%"/>
+  <img loading="lazy" src="/Aeretrea/assets/images/dev-options.jpg" width="30%"/>
+  <img loading="lazy" src="/Aeretrea/assets/images/bl-unlock.png" width="30%"/>
 </p>
 
 Unlocking your bootloader is a fundamental step when installing a custom ROM/recovery or simply rooting your device, as it allows you to flash and install unofficial images in it. Please note this procedure **will completely wipe your data**, so make a backup before proceeding.
@@ -42,7 +42,7 @@ Having KnoxGuard show `Active` or `Locked` will prevent you from installing/runn
 - Enable Developer Options, and **confirm that the OEM unlocking option exists and is grayed out.** This means KnoxGuard hasn't locked your device.
 
 <p align="center">
-  <img loading="lazy" src="/assets/images/avb-orange.png" width="30%"/>
+  <img loading="lazy" src="/Aeretrea/assets/images/avb-orange.png" width="30%"/>
 </p>
 
 If everything went right, your device will start to display the above warning at every boot, this cannot be removed in any way (other than installing the stock fw and locking your bootloader) as it's mandatory on any Android device (source: [Google](https://source.android.com/docs/security/features/verifiedboot/boot-flow#unlocked-devices)).
@@ -57,4 +57,4 @@ Please note that:
 - Your Knox Warranty Bit will not be restored by locking your bootloader, a solution such as [KnoxPatch](https://github.com/BlackMesa123/KnoxPatch) is suggested if you intend to stay on the stock firmware.
 
 {: .highlight }
-*Continue to Install UN1CA [(Custom recovery)]({% link guide/recovery.md %}) / [(Download mode)]({% link guide/download.md %})*
+*Continue to Install Aeretrea [(Custom recovery)]({% link guide/recovery.md %}) / [(Download mode)]({% link guide/download.md %})*

@@ -7,16 +7,16 @@ nav_order: 4
 
 # Build flags
 {: .pb-2 }
-This section covers all of the available UN1CA build flags.
+This section covers all of the available Aeretrea build flags.
 
-Source build flags must be set inside `unica/config.sh` and are related to the firmware which is used as the ROM base, while target build flags must be set in the `config.sh` file of the desidered target device.
+Source build flags must be set inside `aeretrea/config.sh` and are related to the firmware which is used as the ROM base, while target build flags must be set in the `config.sh` file of the desidered target device.
 
 ## Source build flags
 
 ### - **SOURCE_FIRMWARE** (string, required)
 {: .pb-2 }
 Defines the source device firmware to use with the format of **"Model number/CSC/IMEI"**. IMEI number is necessary to fetch the firmware from FUS.
-Currently, UN1CA uses Galaxy S23 (`SM-S911B` with `INS` CSC) as base for Qualcomm devices and Galaxy S23 FE (`SM-S711B` with `SEK` CSC) for Exynos devices.
+Currently, Aeretrea uses Galaxy S23 (`SM-S911B` with `INS` CSC) as base for Qualcomm devices and Galaxy S23 FE (`SM-S711B` with `SEK` CSC) for Exynos devices.
 
 ### - **SOURCE_EXTRA_FIRMWARES** (array, optional)
 {: .pb-2 }

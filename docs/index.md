@@ -6,10 +6,10 @@ permalink: /
 ---
 
 <p align="center">
-  <img loading="lazy" width="60%" src="/assets/images/logo.png"/>
+  <img loading="lazy" width="60%" src="/Aeretrea/assets/images/logo.png"/>
   <br><br>
-  <a href="https://github.com/BlackMesa123/UN1CA"><img loading="lazy" src="https://img.shields.io/badge/GitHub-453f3d?style=for-the-badge&logo=github"/></a>
-  <a href="https://t.me/unicarom"><img loading="lazy" src="https://img.shields.io/badge/Telegram-229ed9?style=for-the-badge&logo=telegram&logoColor=ffffff"/></a>
+  <a href="https://github.com/Aeretrea/Aeretrea"><img loading="lazy" src="https://img.shields.io/badge/GitHub-453f3d?style=for-the-badge&logo=github"/></a>
+  <a href="https://t.me/Aeretrea"><img loading="lazy" src="https://img.shields.io/badge/Telegram-229ed9?style=for-the-badge&logo=telegram&logoColor=ffffff"/></a>
 </p>
 
 - [Installation instructions]({% link guide/index.md %})
@@ -17,7 +17,7 @@ permalink: /
 - [Developer guides]({% link expert/index.md %})
 - [Troubleshooting]({% link faq/index.md %})
 
-#### Thank you to the contributors of UN1CA!
+#### Thank you to the contributors of Aeretrea!
 {: .pt-6 }
 <ul class="list-style-none">
 {% for contributor in site.github.contributors %}

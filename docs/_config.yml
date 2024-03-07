@@ -1,21 +1,21 @@
 # Site settings
-title: UN1CA
+title: Aeretrea
 description: Work-in-progress custom firmware for Samsung Galaxy devices.
-url: "https://unica.mesalabs.io"
-repository: BlackMesa123/UN1CA
+url: "https://aeretrea.github.io/Aeretrea"
+repository: Aeretrea/Aeretrea
 
 permalink: pretty
 
 # Set theme
 remote_theme: just-the-docs/just-the-docs
 # Favicon
-favicon_ico: "/assets/images/favicon.ico"
+favicon_ico: "/Aeretrea/assets/images/favicon.ico"
 
 # Set color scheme
 color_scheme: unica
 
 # Set a path/url to a logo that will be displayed instead of the title
-logo: "/assets/images/header.png"
+logo: "/Aeretrea/assets/images/header.png"
 
 search:
   # Display the relative url in search results
@@ -29,7 +29,7 @@ heading_anchors: false
 # Aux links for the upper right navigation
 aux_links:
   "GitHub":
-    - "https://github.com/BlackMesa123/UN1CA"
+    - "https://github.com/Aeretrea/Aeretrea"
 
 # Footer content
 # appears at the bottom of every page's main content
@@ -38,12 +38,12 @@ aux_links:
 back_to_top: true
 back_to_top_text: "Back to top"
 
-footer_content: "Coded by BlackMesa123 &copy; 2023. Distributed under the <a href=\"https://github.com/BlackMesa123/UN1CA/tree/fourteen/LICENSE\">GPLv3 license.</a>"
+footer_content: "Coded by BlackMesa123 &copy; 2023. Distributed under the <a href=\"https://github.com/Aeretrea/Aeretrea/tree/fourteen/LICENSE\">GPLv3 license.</a>"
 
 # Footer "Edit this page on GitHub" link text
 gh_edit_link: true
 gh_edit_link_text: "Edit this page on GitHub"
-gh_edit_repository: "https://github.com/BlackMesa123/UN1CA"
+gh_edit_repository: "https://github.com/Aeretrea/Aeretrea"
 gh_edit_branch: "fourteen"
 gh_edit_source: docs
 gh_edit_view_mode: "tree"

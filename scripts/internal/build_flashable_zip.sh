@@ -54,7 +54,7 @@ PRINT_HEADER()
     echo    'ui_print(" ");'
     echo    'ui_print("****************************************");'
     echo -n 'ui_print("'
-    echo -n "UN1CA $ROM_VERSION for $TARGET_NAME"
+    echo -n "Aeretrea $ROM_VERSION for $TARGET_NAME"
     echo    '");'
     echo    'ui_print("Coded by BlackMesa123 @XDAforums");'
     echo    'ui_print("****************************************");'
@@ -367,7 +367,7 @@ GENERATE_UPDATER_SCRIPT()
     true
 }
 
-FILE_NAME="UN1CA_${ROM_VERSION}_$(date +%Y%m%d)_${TARGET_CODENAME}"
+FILE_NAME="Aeretrea_${ROM_VERSION}_$(date +%Y%m%d)_${TARGET_CODENAME}"
 # ]
 
 MODEL=$(echo -n "$TARGET_FIRMWARE" | cut -d "/" -f 1)

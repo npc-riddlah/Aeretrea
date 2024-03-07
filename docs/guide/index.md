@@ -8,7 +8,7 @@ has_children: true
 
 # Installation instructions
 {: .pb-1 }
-In this section you'll find some useful resources that will guide you through installing UN1CA. If you need help, please check the [Troubleshooting]({% link faq/index.md %}) section. Before proceeding, you'll need:
+In this section you'll find some useful resources that will guide you through installing Aeretrea. If you need help, please check the [Troubleshooting]({% link faq/index.md %}) section. Before proceeding, you'll need:
 
 - A supported device
 - A PC

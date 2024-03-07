@@ -7,7 +7,7 @@ nav_order: 2
 
 # How the build system works
 {: .pb-2 }
-UN1CA build system is nothing more than a very big bash script, which in the end will automatically generate a flashable custom One UI ROM.
+Aeretrea build system is nothing more than a very big bash script, which in the end will automatically generate a flashable custom One UI ROM.
 
 To make sure this build system is in its best possible state, there are a few principles to keep in mind while working on it:
 - Making it as easy to use, code and maintain as possible
@@ -20,7 +20,7 @@ To make sure this build system is in its best possible state, there are a few pr
 The main root directory has the following structure:
 
 ```tree
-UN1CA
+Aeretrea
 ├── docs                <--- Documentation folder
 ├── external            <--- Dependencies folder
 ├── scripts             <--- Scripts folder
@@ -47,7 +47,7 @@ This folder contains the whole set of scripts of the build system. A list of all
 
 ### **target**
 {: .pb-2 }
-This folder contains all the devices supported by UN1CA, each with its own build configuration and specific patches.
+This folder contains all the devices supported by Aeretrea, each with its own build configuration and specific patches.
 
 ### **unica**
 {: .pb-2 }
@@ -55,7 +55,7 @@ This folder contains the main ROM configuration file, along with all the mods/pa
 
 ### buildenv.sh
 {: .pb-2 }
-When sourced, this script will automatically set up your current shell instance to build UN1CA, it will also add the `run_cmd` function. Usage of this script is:
+When sourced, this script will automatically set up your current shell instance to build Aeretrea, it will also add the `run_cmd` function. Usage of this script is:
 ```bash
 . ./buildenv.sh <target>
 ```
@@ -84,7 +84,7 @@ out
 
 ## Patching system
 {: .pb-2 }
-UN1CA patches structure is heavily inspired by the [Magisk/KernelSU modules](https://topjohnwu.github.io/Magisk/guides.html#magisk-modules) one:
+Aeretrea patches structure is heavily inspired by the [Magisk/KernelSU modules](https://topjohnwu.github.io/Magisk/guides.html#magisk-modules) one:
 
 ```tree
 patch
@@ -138,7 +138,7 @@ To generate a patch file, use `git format-patch` or `diff -crB`.
 When created, this script allows to customize the patch application process. `SKIPUNZIP=1` variable can be declared if you want to skip the default patch application process (will only skip the partitions folders).
 
 Together with [the build flags]({% link expert/flags.md %}), the following variables are also available in the script:
-- `SRC_DIR`: path of the UN1CA root directory
+- `SRC_DIR`: path of the Aeretrea root directory
 - `OUT_DIR`: path of the output directory
 - `TMP_DIR`: path of the temporary folder, this doesn't exists by default and can be used to temporarily store files
 - `ODIN_DIR`: path of the downloaded firmwares folder

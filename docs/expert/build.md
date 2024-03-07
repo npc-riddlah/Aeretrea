@@ -1,13 +1,13 @@
 ---
 layout: default
-title: Build UN1CA
+title: Build Aeretrea
 parent: Developer guides
 nav_order: 1
 ---
 
-# Build UN1CA
+# Build Aeretrea
 {: .pb-2 }
-Building UN1CA is pretty straightforward and only requires running a few commands to get the job done. However, setting up your environment correctly is necessary before proceeding to avoid errors/issues.
+Building Aeretrea is pretty straightforward and only requires running a few commands to get the job done. However, setting up your environment correctly is necessary before proceeding to avoid errors/issues.
 
 ## Minimum requirements
 {: .pb-2 }
@@ -44,11 +44,11 @@ sudo apt install -y \
     libzstd-dev lld openjdk-11-jdk protobuf-compiler zip zipalign
 ```
 
-## Building UN1CA
+## Building Aeretrea
 {: .pb-2 }
 Once you have made sure all the dependencies are installed, you can now clone the repository via git:
 ```bash
-git clone --recurse-submodules https://github.com/BlackMesa123/UN1CA.git && cd UN1CA
+git clone --recurse-submodules https://github.com/Aeretrea/Aeretrea.git && cd Aeretrea
 ```
 
 If you have the repository cloned already, but didn't clone the submodules, you can do so afterwards with the following command:
