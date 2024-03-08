@@ -10,7 +10,7 @@ parent: Supported devices
 
 # Galaxy A73 5G (a73xq)
 {: .pb-4 }
-- Maintainer: [@Asleeppp](https://github.com/Asleeppp)
+- Status: Deprecated
 - Latest version: ![img](https://img.shields.io/github/v/release/Aeretrea/Aeretrea?filter=a73xq*&style=flat-square&color=89bcff)
 - Install method: [Custom recovery]({% link guide/recovery.md %})
 - Requirements: [**Android 14 bootloader**](https://github.com/Simon1511/samsung-sm7325-fw/releases)

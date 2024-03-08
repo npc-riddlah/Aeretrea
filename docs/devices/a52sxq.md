@@ -10,7 +10,7 @@ parent: Supported devices
 
 # Galaxy A52s 5G (a52sxq)
 {: .pb-4 }
-- Maintainer: [@BlackMesa123](https://github.com/BlackMesa123)
+- Status: Deprecated
 - Latest version: ![img](https://img.shields.io/github/v/release/Aeretrea/Aeretrea?filter=a52sxq*&style=flat-square&color=89bcff)
 - Install method: [Custom recovery]({% link guide/recovery.md %})
 - Requirements: [**Android 14 bootloader**](https://github.com/BlackMesa123/proprietary_vendor_samsung_a52sxq/releases)

@@ -10,7 +10,7 @@ parent: Supported devices
 
 # Galaxy S21 FE 5G (Qualcomm)
 {: .pb-4 }
-- Maintainer: [@glikched](https://github.com/glikched)
+- Status: Deprecated
 - Latest version: ![img](https://img.shields.io/github/v/release/Aeretrea/Aeretrea?filter=r9q-*&style=flat-square&color=89bcff) ![img](https://img.shields.io/github/v/release/Aeretrea/Aeretrea?filter=r9q2*&style=flat-square&color=89bcff)
 - Install method: [Custom recovery]({% link guide/recovery.md %})
 - Requirements: **Android 14 bootloader**

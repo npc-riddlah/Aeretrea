@@ -10,7 +10,7 @@ parent: Supported devices
 
 # Galaxy M52 5G (m52xq)
 {: .pb-4 }
-- Maintainer: [@BlackMesa123](https://github.com/BlackMesa123)
+- Status: Deprecated
 - Latest version: ![img](https://img.shields.io/github/v/release/Aeretrea/Aeretrea?filter=m52xq*&style=flat-square&color=89bcff)
 - Install method: [Custom recovery]({% link guide/recovery.md %})
 - Requirements: [**Android 13 bootloader**](https://github.com/BlackMesa123/proprietary_vendor_samsung_m52xq/releases)
