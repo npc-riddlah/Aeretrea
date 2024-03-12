@@ -22,21 +22,21 @@ COL_YELLOW='\033[0;33m'
 COL_RESET='\033[0m'
 
 function echo_err(){
-	printf "\n${COL_RED}[ERROR!]${COL_RESET} $1\n"
+    printf "\n${COL_RED}\033[1m[ERR!]\033[0m${COL_RESET} $1\n"
 }
 
 function echo_info(){
-	printf "${COL_GREEN}[INFO]${COL_RESET} $1\n"
+	printf "${COL_GREEN}\033[1m[INFO]\033[0m${COL_RESET} $1\n"
 }
 
 function echo_warn(){
-	printf "\n${COL_YELLOW}[WARNING]${COL_RESET} $1\n"
+	printf "\n${COL_YELLOW}\033[1m[WARN]\033[0m${COL_RESET} $1\n"
 }
 
 function echo_ok(){
-	printf "${COL_GREEN}[OK]${COL_RESET} $1\n"
+	printf "${COL_GREEN}\033[1m[OK]\033[0m${COL_RESET} $1\n"
 }
 
 function echo_no(){
-	printf "${COL_RED}[NO]${COL_RESET} $1\n"
+	printf "${COL_RED}\033[1m[NO]\033[0m${COL_RESET} $1\n"
 }
