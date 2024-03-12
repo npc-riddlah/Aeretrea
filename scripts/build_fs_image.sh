@@ -17,6 +17,7 @@
 #
 
 set -eu
+source $SRC_DIR/scripts/internal/writeput.sh
 
 if [ "$#" != 4 ]; then
     echo_err "Usage: build_fs_image <fs> <dir> <file_context> <fs_config>"

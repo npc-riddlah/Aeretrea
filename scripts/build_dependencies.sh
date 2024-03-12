@@ -17,6 +17,7 @@
 #
 
 set -eu
+source $SRC_DIR/scripts/internal/writeput.sh
 
 # [
 JOBS="$(nproc)"

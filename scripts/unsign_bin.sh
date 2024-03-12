@@ -17,6 +17,7 @@
 #
 
 set -eu
+source $SRC_DIR/scripts/internal/writeput.sh
 
 if [ "$#" == 0 ]; then
     echo_err "Usage: unsign_bin <image> (<image>...)"

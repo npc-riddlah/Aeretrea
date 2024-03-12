@@ -19,6 +19,7 @@
 # shellcheck disable=SC1091
 
 set -e
+source $SRC_DIR/scripts/internal/writeput.sh
 
 # [
 GET_LATEST_FIRMWARE()

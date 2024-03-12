@@ -17,9 +17,9 @@
 #
 
 # shellcheck disable=SC1091
-
 set -Eeuo pipefail
 START=$SECONDS
+source $SRC_DIR/scripts/internal/writeput.sh
 
 # [
 COMMIT_HASH="$(git rev-parse HEAD)"

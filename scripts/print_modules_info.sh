@@ -19,6 +19,7 @@
 # shellcheck disable=SC2001
 
 set -Ee
+source $SRC_DIR/scripts/internal/writeput.sh
 
 # [
 GEN_KNOX_SUBDIR()

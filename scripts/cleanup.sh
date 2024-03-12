@@ -17,6 +17,8 @@
 #
 
 set -eu
+source $SRC_DIR/scripts/internal/writeput.sh
+
 
 ALL=false
 ODIN=false

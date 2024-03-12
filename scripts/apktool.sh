@@ -17,7 +17,7 @@
 #
 
 # shellcheck disable=SC1091,SC2086
-
+source $SRC_DIR/scripts/internal/writeput.sh
 set -eu
 
 # [
