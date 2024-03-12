@@ -26,7 +26,6 @@ source $SRC_DIR/scripts/internal/writeput.sh
   PKG_DISTRO_NAME=$(cat /etc/*-release)
 
   PKG_NOT_INSTALLED=()
-  PKG_NOT_INSTALLED_AUR=()
 
 check_packages() {
   PKG_DONE="true"
@@ -51,7 +50,7 @@ check_packages() {
         else
           PKG_DONE="false"
           echo_no "$i"
-          PKG_NOT_INSTALLED_AUR+=($i);
+          PKG_NOT_INSTALLED+=($i);
         fi
       done
       if [[ "$PKG_DONE" == "true" ]]
@@ -88,15 +87,12 @@ check_packages() {
     ;;
     *)
       echo_err "Your distro not supported! Try launch with --skip-pkg flag to ignore this step.\n Be Patient: absence of packages may lead to broken installation. In this case install packages and clean ./out folder."
-      return 2
     ;;
   esac
   if [[ "$PKG_DONE" == "false" ]]
   then
-    echo_err "Your installation missing packages:\n ${PKG_NOT_INSTALLED[*]} ${PKG_NOT_INSTALLED_AUR[*]}"
-    return 1
+    echo_err "Your installation missing packages:\n ${PKG_NOT_INSTALLED[*]}"
   fi
-  return 0
 }
 
 install_packages() {
@@ -104,10 +100,13 @@ install_packages() {
   case $PKG_DISTRO_NAME in
   *Manjaro*|*Arch*)
     sudo pacman -Sy ${PKG_NOT_INSTALLED[@]}
-    sudo yaourt -Sy ${PKG_NOT_INSTALLED_AUR[@]}
+    sudo yaourt -Sy ${PKG_NOT_INSTALLED[@]}
   ;;
   *Ubuntu*|*Debian*|*Mint*)
     sudo apt install -y ${PKG_NOT_INSTALLED[@]}
+  ;;
+  *Fedora*)
+    sudo dnf install -y ${PKG_NOT_INSTALLED[@]}
   ;;
   *)
     echo_err "Your distro not supported! Try launch with --skip-pkg flag to ignore this step.\n Be Patient: absence of packages may lead to broken installation. In this case install packages and clean ./out folder."
@@ -118,6 +117,6 @@ install_packages() {
 }
 
 check_packages
-if [ "$?" == "2" ]; then
+if [ "$PKG_DONE" == "false" ]; then
     install_packages
 fi
