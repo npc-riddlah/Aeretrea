@@ -64,7 +64,7 @@ check_packages() {
       echo_info "Checking packages for your (Sub)Debian Linux"
       for i in ${PKG_LIST_DEBIAN[@]};
       do
-        if dpkg -l $i; then
+        if dpkg -l $i &> /dev/null; then
           echo_ok "$i"
         else
           PKG_DONE=false
