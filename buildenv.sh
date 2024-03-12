@@ -19,6 +19,7 @@
 # shellcheck disable=SC1091,SC2012,SC2034
 
 set -o allexport
+source $SRC_DIR/scripts/internal/writeput.sh
 
 # [
 SRC_DIR="$(git rev-parse --show-toplevel)"
@@ -34,16 +35,16 @@ PATH="$TOOLS_DIR:$PATH"
 
 run_cmd()
 {
+    source $SRC_DIR/scripts/internal/writeput.sh
     local CMD=$1
     local CMDS
     CMDS="$(ls --ignore "internal" "$SRC_DIR/scripts" | sed "s/.sh//")"
-
     if [ -z "$CMD" ] || [ "$CMD" = "-h" ]; then
-        echo -e "Available cmds:\n$CMDS"
+        echo "Available cmds:\n$CMDS"
         return 1
     elif ! echo "$CMDS" | grep -q -w "$CMD"; then
-        echo "\"$CMD\" is not valid."
-        echo -e "Available cmds:\n$CMDS"
+        echo_err "\"$CMD\" is not valid."
+        echo "Available cmds:\n$CMDS"
         return 1
     else
         shift
@@ -59,7 +60,7 @@ if [ "$#" != 1 ]; then
     echo -e "Available devices:\n$TARGETS"
     return 1
 elif ! echo "$TARGETS" | grep -q -w "$1"; then
-    echo "\"$1\" is not valid target."
+    echo_err "\"$1\" is not valid target."
     echo -e "Available devices:\n$TARGETS"
     return 1
 else
