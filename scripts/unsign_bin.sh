@@ -19,25 +19,25 @@
 set -eu
 
 if [ "$#" == 0 ]; then
-    echo "Usage: unsign_bin <image> (<image>...)"
+    echo_err "Usage: unsign_bin <image> (<image>...)"
     exit 1
 fi
 
 while [ "$#" != 0 ]; do
     if [ ! -f "$1" ]; then
-        echo "File not found: $1"
+        echo_err "File not found: $1"
         exit 1
     else
         if avbtool info_image --image "$1" &>/dev/null; then
-            echo "Removing AVB footer"
+            echo_info "Removing AVB footer"
             avbtool erase_footer --image "$1"
         fi
         if tail "$1" | grep -q "SignerVer02"; then
-            echo "Removing Samsung v2 signature"
+            echo_info "Removing Samsung v2 signature"
             truncate -s -512 "$1"
         fi
         if tail "$1" | grep -q "SignerVer03"; then
-            echo "Removing Samsung v3 signature"
+            echo_info "Removing Samsung v3 signature"
             truncate -s -784 "$1"
         fi
     fi

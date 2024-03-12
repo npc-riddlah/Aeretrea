@@ -1,6 +1,5 @@
 #!/bin/bash
 #LOOK HERE! In order to add packages in scripts please, add it and analogues in PKG_LIST_* vars.
-source scripts/internal/writeput.sh
 
   PKG_LIST_DEBIAN=("attr" "ccache" "clang" "git" "golang" "libbrotli-dev" "libgtest-dev" "liblz4-dev" "libpcre2-dev" "libprotobuf-dev" "libunwind-dev" "libusb-1.0-0-dev" "libzstd-dev" "lld" "openjdk-11-jdk" "protobuf-compiler" "zipalign")
   PKG_LIST_ARCH_PACMAN=("yaourt" "attr" "ccache" "clang" "git" "go" "brotli" "gtest" "lz4" "pcre2" "protobuf" "libunwind" "libusb" "zstd" "lld" "jre11-openjdk" "protobuf-c" "zip")

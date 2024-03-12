@@ -26,7 +26,7 @@ WORK=false
 TOOLS=false
 
 if [ "$#" == 0 ]; then
-    echo "Usage: cleanup <type>"
+    echo_err "Usage: cleanup <type>"
     exit 1
 else
     while [ "$#" != 0 ]; do
@@ -51,7 +51,7 @@ else
                 TOOLS=true
                 ;;
             *)
-                echo "\"$1\" is not valid type."
+                echo_err "\"$1\" is not valid type."
                 echo "Available options (multiple can be accepted):"
                 echo "all"
                 echo "odin"
@@ -68,33 +68,33 @@ else
 fi
 
 if $ALL; then
-    echo "- Cleaning everything..."
+    echo_info "- Cleaning everything..."
     rm -rf "$OUT_DIR"
     exit 0
 fi
 
 if $ODIN; then
-    echo "- Cleaning Odin firmwares dir..."
+    echo_info "- Cleaning Odin firmwares dir..."
     rm -rf "$ODIN_DIR"
 fi
 
 if $FW; then
-    echo "- Cleaning extracted firmwares dir..."
+    echo_info "- Cleaning extracted firmwares dir..."
     rm -rf "$FW_DIR"
 fi
 
 if $APKTOOL; then
-    echo "- Cleaning decompiled apks/jars dir..."
+    echo_info "- Cleaning decompiled apks/jars dir..."
     rm -rf "$APKTOOL_DIR"
 fi
 
 if $WORK; then
-    echo "- Cleaning ROM work dir..."
+    echo_info "- Cleaning ROM work dir..."
     rm -rf "$WORK_DIR"
 fi
 
 if $TOOLS; then
-    echo "- Cleaning dependencies dir..."
+    echo_info "- Cleaning dependencies dir..."
     rm -rf "$TOOLS_DIR"
     {
         cd "$SRC_DIR/external/android-tools" && git clean -f -d -x && cd -

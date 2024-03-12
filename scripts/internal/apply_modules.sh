@@ -50,27 +50,27 @@ SET_PROP()
     local FILE="$3"
 
     if [ ! -f "$FILE" ]; then
-        echo "File not found: $FILE"
+        echo_err "File not found: $FILE"
         return 1
     fi
 
     if [[ "$2" == "-d" ]] || [[ "$2" == "--delete" ]]; then
         PROP="$(echo -n "$PROP" | sed 's/=//g')"
         if grep -Fq "$PROP" "$FILE"; then
-            echo "Deleting \"$PROP\" prop in $FILE" | sed "s.$WORK_DIR..g"
+            echo_info "Deleting \"$PROP\" prop in $FILE" | sed "s.$WORK_DIR..g"
             sed -i "/^$PROP/d" "$FILE"
         fi
     else
         if grep -Fq "$PROP" "$FILE"; then
             local LINES
 
-            echo "Replacing \"$PROP\" prop with \"$VALUE\" in $FILE" | sed "s.$WORK_DIR..g"
+            echo_info "Replacing \"$PROP\" prop with \"$VALUE\" in $FILE" | sed "s.$WORK_DIR..g"
             LINES="$(sed -n "/^${PROP}\b/=" "$FILE")"
             for l in $LINES; do
                 sed -i "$l c${PROP}=${VALUE}" "$FILE"
             done
         else
-            echo "Adding \"$PROP\" prop with \"$VALUE\" in $FILE" | sed "s.$WORK_DIR..g"
+            echo_info "Adding \"$PROP\" prop with \"$VALUE\" in $FILE" | sed "s.$WORK_DIR..g"
             if ! grep -q "Added by scripts" "$FILE"; then
                 echo "# Added by scripts/internal/apply_modules.sh" >> "$FILE"
             fi
@@ -109,7 +109,7 @@ READ_AND_APPLY_PROPS()
                 continue
                 ;;
             *)
-                echo "Unvalid file: \"$patch\""
+                echo_err "Unvalid file: \"$patch\""
                 return 1
                 ;;
         esac
@@ -125,7 +125,7 @@ READ_AND_APPLY_PROPS()
                 SET_PROP "$(echo -n "$i" | cut -d "=" -f 1)" "$(echo -n "$i" | cut -d "=" -f 2)" \
                     "$FILE"
             else
-                echo "Malformed string in $patch: \"$i\""
+                echo_err "Malformed string in $patch: \"$i\""
                 return 1
             fi
         done < "$patch"
@@ -153,7 +153,7 @@ APPLY_SMALI_PATCHES()
             fi
         fi
 
-        echo "Applying \"$COMMIT_NAME\" to $TARGET"
+        echo_info "Applying \"$COMMIT_NAME\" to $TARGET"
         OUT="$(patch -p1 -s -t -N --dry-run < "$patch")" \
             || echo "$OUT" | grep -q "Skipping patch" || false
         patch -p1 -s -t -N --no-backup-if-mismatch < "$patch" &> /dev/null || true
@@ -168,7 +168,7 @@ APPLY_MODULE()
     local MODAUTH
 
     if [ ! -d "$MODPATH" ]; then
-        echo "Folder not found: $MODPATH"
+        echo_err "Folder not found: $MODPATH"
         exit 1
     fi
 
@@ -184,7 +184,7 @@ APPLY_MODULE()
     fi
 
     if [ ! -f "$MODPATH/module.prop" ]; then
-        echo "File not found: $MODPATH/module.prop"
+        echo_err "File not found: $MODPATH/module.prop"
         exit 1
     elif [ -f "$MODPATH/disable" ]; then
         exit 0
@@ -193,7 +193,7 @@ APPLY_MODULE()
         MODAUTH="$(grep "^author" "$MODPATH/module.prop" | sed "s/author=//" | sed "s/, /, @/")"
     fi
 
-    echo "- Processing \"$MODNAME\" by @$MODAUTH"
+    echo_info "- Processing \"$MODNAME\" by @$MODAUTH"
 
     if ! grep -q '^SKIPUNZIP=1$' "$MODPATH/customize.sh" 2> /dev/null; then
         [ -d "$MODPATH/odm" ] && cp -a --preserve=all "$MODPATH/odm/"* "$WORK_DIR/odm"
@@ -223,10 +223,10 @@ APPLY_MODULE()
 #]
 
 if [ "$#" == 0 ]; then
-    echo "Usage: apply_modules <folder>"
+    echo_err "Usage: apply_modules <folder>"
     exit 1
 elif [ ! -d "$1" ]; then
-    echo "Folder not found: $1"
+    echo_err "Folder not found: $1"
     exit 1
 fi
 

@@ -71,7 +71,7 @@ while [ "$#" != 0 ]; do
             FORCE=true
             ;;
         *)
-            echo "Usage: download_fw [options]"
+            echo_err "Usage: download_fw [options]"
             echo " -f, --force : Force firmware download"
             exit 1
             ;;
@@ -92,20 +92,20 @@ do
         [ -z "$(GET_LATEST_FIRMWARE)" ] && continue
         if [[ "$(GET_LATEST_FIRMWARE)" != "$(cat "$ODIN_DIR/${MODEL}_${REGION}/.downloaded")" ]]; then
             if $FORCE; then
-                echo "- Updating $MODEL firmware with $REGION CSC..."
+                echo_info "- Updating $MODEL firmware with $REGION CSC..."
                 rm -rf "$ODIN_DIR/${MODEL}_${REGION}" && DOWNLOAD_FIRMWARE
             else
-                echo    "- $MODEL firmware with $REGION CSC already downloaded"
+                echo_warn    "- $MODEL firmware with $REGION CSC already downloaded"
                 echo    "  A newer version of this device's firmware is available."
                 echo -e "  To download, clean your Odin firmwares directory or run this cmd with \"--force\"\n"
                 continue
             fi
         else
-            echo -e "- $MODEL firmware with $REGION CSC already downloaded\n"
+            echo_info "- $MODEL firmware with $REGION CSC already downloaded\n"
             continue
         fi
     else
-        echo "- Downloading $MODEL firmware with $REGION CSC..."
+        echo_info "- Downloading $MODEL firmware with $REGION CSC..."
         rm -rf "$ODIN_DIR/${MODEL}_${REGION}" && DOWNLOAD_FIRMWARE
     fi
 done

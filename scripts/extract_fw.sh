@@ -47,13 +47,13 @@ EXTRACT_KERNEL_BINARIES()
 
     local FILES="boot.img.lz4 dtbo.img.lz4 init_boot.img.lz4 vendor_boot.img.lz4"
 
-    echo "- Extracting kernel binaries..."
+    echo_info "- Extracting kernel binaries..."
     cd "$FW_DIR/${MODEL}_${REGION}"
     for file in $FILES
     do
         [ -f "${file%.lz4}" ] && continue
         tar tf "$AP_TAR" "$file" &>/dev/null || continue
-        echo "Extracting ${file%.lz4}"
+        echo_info "Extracting ${file%.lz4}"
         tar xf "$AP_TAR" "$file" && lz4 -d -q --rm "$file" "${file%.lz4}"
     done
 
@@ -68,7 +68,7 @@ EXTRACT_OS_PARTITIONS()
     local SHOULD_EXTRACT=false
     local SHOULD_EXTRACT_SUPER=false
 
-    echo "- Extracting OS partitions..."
+    echo_info "- Extracting OS partitions..."
     cd "$FW_DIR/${MODEL}_${REGION}"
 
     local COMMON_FOLDERS="odm product system vendor"
@@ -80,7 +80,7 @@ EXTRACT_OS_PARTITIONS()
 
     if $SHOULD_EXTRACT; then
         if [ ! -f "lpdump" ] || $SHOULD_EXTRACT_SUPER; then
-            echo "Extracting super.img"
+            echo_info "Extracting super.img"
             tar xf "$AP_TAR" "super.img.lz4"
             lz4 -d -q --rm "super.img.lz4" "super.img.sparse"
             simg2img "super.img.sparse" "super.img" && rm "super.img.sparse"
@@ -97,7 +97,7 @@ EXTRACT_OS_PARTITIONS()
 
             case "$(GET_IMG_FS_TYPE "$img")" in
                 "erofs")
-                    echo "Extracting $img"
+                    echo_info "Extracting $img"
                     PREFIX=""
                     [ -d "$PARTITION" ] && rm -rf "$PARTITION"
                     mkdir -p "$PARTITION"
@@ -105,7 +105,7 @@ EXTRACT_OS_PARTITIONS()
                     cp -a --preserve=all tmp_out/* "$PARTITION"
                     ;;
                 "f2fs" | "ext4")
-                    echo "Extracting $img"
+                    echo_info "Extracting $img"
                     PREFIX="sudo"
                     [ -d "$PARTITION" ] && rm -rf "$PARTITION"
                     mkdir -p "$PARTITION"
@@ -121,7 +121,7 @@ EXTRACT_OS_PARTITIONS()
                     ;;
             esac
 
-            echo "Generating fs_config/file_context for $img"
+            echo_info "Generating fs_config/file_context for $img"
             [ -f "file_context-$PARTITION" ] && rm "file_context-$PARTITION"
             [ -f "fs_config-$PARTITION" ] && rm "fs_config-$PARTITION"
             while read -r i; do
@@ -171,14 +171,14 @@ EXTRACT_AVB_BINARIES()
     local PDR
     PDR="$(pwd)"
 
-    echo "- Extracting AVB binaries..."
+    echo_info "- Extracting AVB binaries..."
     cd "$FW_DIR/${MODEL}_${REGION}"
     if [ ! -f "vbmeta.img" ] && tar tf "$BL_TAR" "vbmeta.img.lz4" &>/dev/null; then
-        echo "Extracting vbmeta.img"
+        echo_info "Extracting vbmeta.img"
         tar xf "$BL_TAR" "vbmeta.img.lz4" && lz4 -d -q --rm "vbmeta.img.lz4" "vbmeta.img"
     fi
     if [ ! -f "vbmeta_patched.img" ]; then
-        echo "Generating vbmeta_patched.img"
+        echo_info "Generating vbmeta_patched.img"
         cp --preserve=all "vbmeta.img" "vbmeta_patched.img"
         printf "\x03" | dd of="vbmeta_patched.img" bs=1 seek=123 count=1 conv=notrunc &> /dev/null
     fi
@@ -226,7 +226,7 @@ while [ "$#" != 0 ]; do
             FORCE=true
             ;;
         *)
-            echo "Usage: extract_fw [options]"
+            echo_err "Usage: extract_fw [options]"
             echo " -f, --force : Force firmware extraction"
             exit 1
             ;;
@@ -247,28 +247,28 @@ do
         if [ -f "$ODIN_DIR/${MODEL}_${REGION}/.downloaded" ] && \
             [[ "$(cat "$ODIN_DIR/${MODEL}_${REGION}/.downloaded")" != "$(cat "$FW_DIR/${MODEL}_${REGION}/.extracted")" ]]; then
             if $FORCE; then
-                echo "- Updating $MODEL firmware with $REGION CSC..."
+                echo_info "- Updating $MODEL firmware with $REGION CSC..."
                 rm -rf "$FW_DIR/${MODEL}_${REGION}" && EXTRACT_ALL
             else
-                echo    "- $MODEL firmware with $REGION CSC is already extracted."
+                echo_warn    "- $MODEL firmware with $REGION CSC is already extracted."
                 echo    "  A newer version of this device's firmware is available."
                 echo -e "  To extract, clean your extracted firmwares directory or run this cmd with \"--force\"\n"
                 continue
             fi
         elif [[ "$(GET_LATEST_FIRMWARE)" != "$(cat "$FW_DIR/${MODEL}_${REGION}/.extracted")" ]]; then
-            echo    "- $MODEL firmware with $REGION CSC is already extracted."
+            echo_warn    "- $MODEL firmware with $REGION CSC is already extracted."
             echo    "  A newer version of this device's firmware is available."
             echo -e "  Please download the firmware using the \"download_fw\" cmd\n"
             continue
         else
-            echo -e "- $MODEL firmware with $REGION CSC is already extracted. Skipping...\n"
+            echo_info "- $MODEL firmware with $REGION CSC is already extracted. Skipping...\n"
             continue
         fi
     elif [ -f "$ODIN_DIR/${MODEL}_${REGION}/.downloaded" ]; then
-        echo -e "- Extracting $MODEL firmware with $REGION CSC...\n"
+        echo_info "- Extracting $MODEL firmware with $REGION CSC...\n"
         EXTRACT_ALL
     else
-        echo    "- $MODEL firmware with $REGION CSC is not downloaded."
+        echo_err    "- $MODEL firmware with $REGION CSC is not downloaded."
         echo -e "  Please download the firmware first using the \"download_fw\" cmd\n"
         exit 1
     fi

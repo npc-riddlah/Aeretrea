@@ -39,7 +39,7 @@ REMOVE_FROM_WORK_DIR()
         FILE="$(echo -n "$FILE_PATH" | sed "s.$WORK_DIR/..")"
         PARTITION="$(echo -n "$FILE" | cut -d "/" -f 1)"
 
-        echo "Debloating /$FILE"
+        echo_info "Debloating /$FILE"
         rm -rf "$FILE_PATH"
 
         FILE="$(echo -n "$FILE" | sed 's/\//\\\//g')"
@@ -84,16 +84,16 @@ DO_DECOMPILE()
             APK_PATH="$WORK_DIR$OUT_DIR"
             ;;
         *)
-            echo "Unvalid path: $OUT_DIR"
+            echo_err "Unvalid path: $OUT_DIR"
             return 1
             ;;
     esac
 
     if [ ! -f "$APK_PATH" ]; then
-        echo "File not found: $OUT_DIR"
+        echo_err "File not found: $OUT_DIR"
         return 1
     elif [[ "$(xxd -p -l "4" "$APK_PATH")" != "504b0304" ]]; then
-        echo "File not valid: $OUT_DIR"
+        echo_err "File not valid: $OUT_DIR"
         return 1
     fi
 
@@ -101,7 +101,7 @@ DO_DECOMPILE()
         API=( "-api" "$SOURCE_API_LEVEL" )
     fi
 
-    echo "Decompiling $OUT_DIR"
+    echo_info "Decompiling $OUT_DIR"
     apktool -q d "${API[@]}" -b $FORCE -o "$APKTOOL_DIR$OUT_DIR" -p "$FRAMEWORK_DIR" "$APK_PATH"
     sed -i "s/classes.dex/dex/g" "$APKTOOL_DIR$OUT_DIR/apktool.yml"
 
@@ -152,28 +152,28 @@ DO_RECOMPILE()
             APK_PATH="$WORK_DIR$IN_DIR"
             ;;
         *)
-            echo "Unvalid path: $IN_DIR"
+            echo_err "Unvalid path: $IN_DIR"
             return 1
             ;;
     esac
 
     if [ ! -d "$APKTOOL_DIR$IN_DIR" ]; then
-        echo "Folder not found: $IN_DIR"
+        echo_err "Folder not found: $IN_DIR"
         return 1
     fi
 
     local APK_NAME
     APK_NAME="$(basename "$APK_PATH")"
 
-    echo "Recompiling $IN_DIR"
+    echo_info "Recompiling $IN_DIR"
     apktool -q b -c -p "$FRAMEWORK_DIR" --use-aapt2 "$APKTOOL_DIR$IN_DIR"
     if [[ "$APK_PATH" == *".apk" ]]; then
-        echo "Signing $IN_DIR"
+        echo_info "Signing $IN_DIR"
         signapk "$SRC_DIR/unica/security/${CERT_PREFIX}_platform.x509.pem" "$SRC_DIR/unica/security/${CERT_PREFIX}_platform.pk8" \
             "$APKTOOL_DIR$IN_DIR/dist/$APK_NAME" "$APKTOOL_DIR$IN_DIR/dist/temp.apk" \
             && mv -f "$APKTOOL_DIR$IN_DIR/dist/temp.apk" "$APKTOOL_DIR$IN_DIR/dist/$APK_NAME"
     else
-        echo "Zipaligning $IN_DIR"
+        echo_info "Zipaligning $IN_DIR"
         zipalign -p 4 "$APKTOOL_DIR$IN_DIR/dist/$APK_NAME" "$APKTOOL_DIR$IN_DIR/dist/temp" \
             && mv -f "$APKTOOL_DIR$IN_DIR/dist/temp" "$APKTOOL_DIR$IN_DIR/dist/$APK_NAME"
     fi
@@ -196,10 +196,10 @@ FRAMEWORK_DIR="$APKTOOL_DIR/bin/fw"
 
 if [ ! -d "$FRAMEWORK_DIR" ]; then
     if [ -f "$WORK_DIR/system/system/framework/framework-res.apk" ]; then
-        echo "Set up apktool env"
+        echo_info "Set up apktool env"
         apktool -q if -p "$FRAMEWORK_DIR" "$WORK_DIR/system/system/framework/framework-res.apk"
     else
-        echo "Please set up your work_dir first."
+        echo_err "Please set up your work_dir first."
         exit 1
     fi
 fi

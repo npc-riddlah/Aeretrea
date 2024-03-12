@@ -27,7 +27,7 @@ GET_PROP()
     local FILE="$2"
 
     if [ ! -f "$FILE" ]; then
-        echo "File not found: $FILE"
+        echo_err "File not found: $FILE"
         exit 1
     fi
 

@@ -28,7 +28,7 @@ DO_DEBLOAT()
 
     local FILE_PATH="$WORK_DIR/$PARTITION/$FILE"
     if [ -e "$FILE_PATH" ]; then
-        echo "Debloating /$PARTITION/$FILE"
+        echo_info "Debloating /$PARTITION/$FILE"
         rm -rf "$FILE_PATH"
 
         FILE="$(echo -n "$FILE" | sed 's/\//\\\//g')"

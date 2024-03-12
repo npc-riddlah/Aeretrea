@@ -39,7 +39,7 @@ BUILD_ANDROID_TOOLS()
     local PDR
     PDR="$(pwd)"
 
-    echo -e "- Building android-tools...\n"
+    echo_info "- Building android-tools...\n"
 
     cd "$SRC_DIR/external/android-tools"
     mkdir -p "build" && cd "build"
@@ -68,7 +68,7 @@ BUILD_APKTOOL()
     local PDR
     PDR="$(pwd)"
 
-    echo -e "- Building apktool...\n"
+    echo_info "- Building apktool...\n"
 
     cd "$SRC_DIR/external/apktool"
     ./gradlew build shadowJar -q
@@ -84,7 +84,7 @@ BUILD_EROFS_UTILS()
     local PDR
     PDR="$(pwd)"
 
-    echo -e "- Building erofs-utils...\n"
+    echo_info "- Building erofs-utils...\n"
 
     cd "$SRC_DIR/external/erofs-utils"
     cmake -S "./build/cmake" -B "./out" \
@@ -112,7 +112,7 @@ BUILD_IMG2SDAT()
     local PDR
     PDR="$(pwd)"
 
-    echo -e "- Building img2sdat...\n"
+    echo_info "- Building img2sdat...\n"
 
     cd "$SRC_DIR/external/img2sdat"
     find "." -maxdepth 1 -type f -exec test -x {} \; -exec cp --preserve=all {} "$TOOLS_DIR" \;
@@ -126,7 +126,7 @@ BUILD_SAMFIRM()
     local PDR
     PDR="$(pwd)"
 
-    echo -e "- Building samfirm.js...\n"
+    echo_info "- Building samfirm.js...\n"
 
     cd "$SRC_DIR/external/samfirm.js"
     npm install --silent
@@ -142,7 +142,7 @@ BUILD_SIGNAPK()
     local PDR
     PDR="$(pwd)"
 
-    echo -e "- Building signapk...\n"
+    echo_info "- Building signapk...\n"
 
     mkdir -p "$TOOLS_DIR/../lib64"
     cd "$SRC_DIR/external/signapk"
@@ -156,8 +156,8 @@ BUILD_SIGNAPK()
 # ]
 
 if [ "$#" -gt 0 ]; then
-    echo "Usage: build_dependencies"
-    echo "This cmd does not accepts any arguments."
+    echo_warn "Usage: build_dependencies"
+    echo_warn "This cmd does not accepts any arguments."
     exit 1
 fi
 

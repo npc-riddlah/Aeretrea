@@ -27,7 +27,7 @@ GET_LATEST_FIRMWARE()
 #]
 
 if [ "$#" != 1 ]; then
-    echo "Usage: update_prebuilt_blobs <path>"
+    echo_err "Usage: update_prebuilt_blobs <path>"
     exit 1
 fi
 
@@ -131,7 +131,7 @@ case "$1" in
             -not -path "*/firmware/*" ! -name "*wifi_firmware.rc" | sed "s.$SRC_DIR/target/m52xq/patches/vendor/..")"
         ;;
     *)
-        echo "Unsupported path: $1"
+        echo_err "Unsupported path: $1"
         exit 1
         ;;
 esac
@@ -145,7 +145,7 @@ if [[ "$(GET_LATEST_FIRMWARE)" == "$(cat "$SRC_DIR/$MODULE/.current")" ]]; then
     exit 0
 fi
 
-echo -e "Updating $MODULE blobs\n"
+echo_info "Updating $MODULE blobs\n"
 
 export SOURCE_FIRMWARE="$FW"
 export TARGET_FIRMWARE="$FW"

@@ -41,7 +41,7 @@ GET_OFFICIAL_STATUS()
 GEN_CONFIG_FILE()
 {
     if [ -f "$OUT_DIR/config.sh" ]; then
-        echo "config.sh already exists. Regenerating..."
+        echo_warn "config.sh already exists. Regenerating..."
         rm -f "$OUT_DIR/config.sh"
     fi
 

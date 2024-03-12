@@ -110,7 +110,7 @@ FILE_NAME="Aeretrea_${ROM_VERSION}_$(date +%Y%m%d)_${TARGET_CODENAME}"
 MODEL=$(echo -n "$TARGET_FIRMWARE" | cut -d "/" -f 1)
 REGION=$(echo -n "$TARGET_FIRMWARE" | cut -d "/" -f 2)
 
-echo "Set up tmp dir"
+echo_info "Set up tmp dir"
 mkdir -p "$TMP_DIR"
 
 while read -r i; do
@@ -120,13 +120,13 @@ while read -r i; do
     [ -f "$TMP_DIR/$PARTITION.img" ] && rm -f "$TMP_DIR/$PARTITION.img"
     [ -f "$WORK_DIR/$PARTITION.img" ] && rm -f "$WORK_DIR/$PARTITION.img"
 
-    echo "Building $PARTITION.img"
+    echo_info "Building $PARTITION.img"
     { bash -e "$SRC_DIR/scripts/build_fs_image.sh" "$TARGET_OS_FILE_SYSTEM" "$WORK_DIR/$PARTITION" \
         "$WORK_DIR/configs/file_context-$PARTITION" "$WORK_DIR/configs/fs_config-$PARTITION" > /dev/null; } 2>&1
     mv "$WORK_DIR/$PARTITION.img" "$TMP_DIR/$PARTITION.img"
 done <<< "$(find "$WORK_DIR" -mindepth 1 -maxdepth 1 -type d)"
 
-echo "Building super.img"
+echo_info "Building super.img"
 [ -f "$TMP_DIR/super.img" ] && rm -f "$TMP_DIR/super.img"
 CMD="lpmake $(GENERATE_LPMAKE_OPT)"
 $CMD &> /dev/null
@@ -137,29 +137,29 @@ done
 
 while read -r i; do
     IMG="$(basename "$i")"
-    echo "Copying $IMG"
+    echo_info "Copying $IMG"
     [ -f "$TMP_DIR/$IMG" ] && rm -f "$TMP_DIR/$IMG"
     cp -a --preserve=all "$i" "$TMP_DIR/$IMG"
 done <<< "$(find "$WORK_DIR/kernel" -mindepth 1 -maxdepth 1 -type f -name "*.img")"
 
 for i in "$TMP_DIR"/*.img; do
-    echo "Compressing $(basename "$i")"
+    echo_info "Compressing $(basename "$i")"
     [ -f "$i.lz4" ] && rm -f "$i.lz4"
     lz4 -B6 --content-size -q --rm "$i" "$i.lz4" &> /dev/null
 done
 
-echo "Creating tar"
+echo_info "Creating tar"
 [ -f "$OUT_DIR/$FILE_NAME.tar" ] && rm -f "$OUT_DIR/$FILE_NAME.tar"
 cd "$TMP_DIR" ; tar -c --format=gnu -f "$OUT_DIR/$FILE_NAME.tar" -- *.lz4 ; cd - &> /dev/null
 
-echo "Generating checksum"
+echo_info "Generating checksum"
 [ -f "$OUT_DIR/$FILE_NAME.tar.md5" ] && rm -f "$OUT_DIR/$FILE_NAME.tar.md5"
 CHECKSUM="$(md5sum "$OUT_DIR/$FILE_NAME.tar" | cut -d " " -f 1 | sed 's/ //')"
 echo -n "$CHECKSUM" >> "$OUT_DIR/$FILE_NAME.tar" \
     && echo "  $FILE_NAME.tar" >> "$OUT_DIR/$FILE_NAME.tar" \
     && mv "$OUT_DIR/$FILE_NAME.tar" "$OUT_DIR/$FILE_NAME.tar.md5"
 
-echo "Deleting tmp dir"
+echo_info "Deleting tmp dir"
 rm -rf "$TMP_DIR"
 
 exit 0

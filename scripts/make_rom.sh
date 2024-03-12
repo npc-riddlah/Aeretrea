@@ -42,20 +42,20 @@ while [ "$#" != 0 ]; do
             ;;
         "--no-rom-zip")
             if $BUILD_TAR; then
-                echo "TARGET_INSTALL_METHOD is \"odin\", ignoring --no-rom-zip"
+                echo_info "TARGET_INSTALL_METHOD is \"odin\", ignoring --no-rom-zip"
             else
                 BUILD_ZIP=false
             fi
             ;;
         "--no-rom-tar")
             if $BUILD_ZIP; then
-                echo "TARGET_INSTALL_METHOD is \"zip\", ignoring --no-rom-tar"
+                echo_info "TARGET_INSTALL_METHOD is \"zip\", ignoring --no-rom-tar"
             else
                 BUILD_TAR=false
             fi
             ;;
         *)
-            echo "Usage: make_rom [options]"
+            echo_err "Usage: make_rom [options]"
             echo " -f, --force : Force build"
             echo " --no-rom-zip : Do not build ROM zip"
             echo " --no-rom-tar : Do not build ROM tar"
@@ -68,7 +68,7 @@ done
 
 if [ -f "$WORK_DIR/.completed" ]; then
     if [[ "$(cat "$WORK_DIR/.completed")" != "$WORK_DIR_HASH" ]] && ! $FORCE; then
-        echo "Changes in config.sh/the repo have been detected."
+        echo_err "Changes in config.sh/the repo have been detected."
         echo "Please clean your work dir or run the cmd with \"--force\"."
         exit 1
     fi
@@ -88,21 +88,21 @@ if $BUILD_ROM; then
         bash "$SRC_DIR/scripts/extract_fw.sh"
     fi
 
-    echo -e "- Creating work dir..."
+    echo_info  "- Creating work dir..."
     bash "$SRC_DIR/scripts/internal/create_work_dir.sh"
 
-    echo -e "\n- Applying debloat list..."
+    echo_info "\n- Applying debloat list..."
     bash "$SRC_DIR/scripts/internal/apply_debloat.sh"
 
-    echo -e "\n- Applying ROM packages..."
+    echo_info  "\n- Applying ROM packages..."
     bash "$SRC_DIR/scripts/internal/apply_modules.sh" "$SRC_DIR/unica/packages"
 
-    echo -e "\n- Applying ROM patches..."
+    echo_info  "\n- Applying ROM patches..."
     bash "$SRC_DIR/scripts/internal/apply_modules.sh" "$SRC_DIR/unica/patches"
     [[ -d "$SRC_DIR/target/$TARGET_CODENAME/patches" ]] \
         && bash "$SRC_DIR/scripts/internal/apply_modules.sh" "$SRC_DIR/target/$TARGET_CODENAME/patches"
 
-    echo -e "\n- Recompiling APKs/JARs..."
+    echo_info "\n- Recompiling APKs/JARs..."
     while read -r i; do
         bash "$SRC_DIR/scripts/apktool.sh" b "$i"
     done <<< "$(find "$OUT_DIR/apktool" -type d \( -name "*.apk" -o -name "*.jar" \) -printf "%p\n" | sed "s.$OUT_DIR/apktool..")"
@@ -110,20 +110,20 @@ if $BUILD_ROM; then
     echo ""
     echo -n "$WORK_DIR_HASH" > "$WORK_DIR/.completed"
 else
-    echo -e "- Nothing to do in work dir.\n"
+    echo_ok "- Nothing to do in work dir.\n"
 fi
 
 if $BUILD_ZIP; then
-    echo "- Building ROM zip..."
+    echo_info "- Building ROM zip..."
     bash "$SRC_DIR/scripts/internal/build_flashable_zip.sh"
     echo ""
 elif $BUILD_TAR; then
-    echo "- Building ROM tar..."
+    echo_info "- Building ROM tar..."
     bash "$SRC_DIR/scripts/internal/build_odin_package.sh"
     echo ""
 fi
 
 ESTIMATED=$((SECONDS-START))
-echo "Build completed in $((ESTIMATED / 3600))hrs $(((ESTIMATED / 60) % 60))min $((ESTIMATED % 60))sec."
+echo_ok "Build completed in $((ESTIMATED / 3600))hrs $(((ESTIMATED / 60) % 60))min $((ESTIMATED % 60))sec."
 
 exit 0

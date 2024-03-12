@@ -19,7 +19,7 @@
 set -eu
 
 if [ "$#" != 4 ]; then
-    echo "Usage: build_fs_image <fs> <dir> <file_context> <fs_config>"
+    echo_err "Usage: build_fs_image <fs> <dir> <file_context> <fs_config>"
     exit 1
 fi
 
@@ -38,7 +38,7 @@ case "$1" in
         EROFS=true
         ;;
     *)
-        echo "\"$1\" is not valid fs."
+        echo_err "\"$1\" is not valid fs."
         echo "Available FS:"
         echo "ext4(+sparse)"
         echo "f2fs(+sparse)"
@@ -48,21 +48,21 @@ case "$1" in
 esac
 
 if [ ! -d "$2" ]; then
-    echo "Folder not found: $2"
+    echo_err "Folder not found: $2"
     exit 1
 fi
 if [ ! -f "$3" ]; then
-    echo "File not found: $3"
+    echo_err "File not found: $3"
     exit 1
 fi
 if [ ! -f "$4" ]; then
-    echo "File not found: $4"
+    echo_err "File not found: $4"
     exit 1
 fi
 
 PARTITION=$(basename "$2")
 
-echo -e "- Building $PARTITION.img as $1...\n"
+echo_info "- Building $PARTITION.img as $1...\n"
 
 if $EXT4; then
     [[ $PARTITION == "system" ]] && MOUNT_POINT="/" || MOUNT_POINT="$PARTITION"
