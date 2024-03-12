@@ -25,8 +25,8 @@ source $SRC_DIR/scripts/internal/writeput.sh
   PKG_LIST_FEDORA=("attr" "ccache" "clang" "git" "go" "brotli" "gtest" "lz4" "pcre2" "protobuf" "libunwind" "libusb" "zstd" "lld" "jre11-openjdk" "protobuf-c" "zip")
   PKG_DISTRO_NAME=$(cat /etc/*-release)
 
-  PKG_NOT_INSTALLED=("")
-  PKG_NOT_INSTALLED_AUR=("")
+  PKG_NOT_INSTALLED=()
+  PKG_NOT_INSTALLED_AUR=()
 
 check_packages() {
   PKG_DONE="true"
@@ -67,7 +67,7 @@ check_packages() {
         if dpkg -l $i &> /dev/null; then
           echo_ok "$i"
         else
-          PKG_DONE=false
+          PKG_DONE="false"
           echo_no "$i"
           PKG_NOT_INSTALLED+=($i);
         fi
@@ -80,7 +80,7 @@ check_packages() {
         if dnf list installed | grep -q $i; then
           echo_ok "$i"
         else
-          PKG_DONE=false
+          PKG_DONE="false"
           echo_no "$i"
           PKG_NOT_INSTALLED+=($i);
         fi
@@ -93,7 +93,7 @@ check_packages() {
   esac
   if [[ "$PKG_DONE" == "false" ]]
   then
-    echo_err "Your installation missing packages:\n ${PKG_NOT_INSTALLED[*] ${PKG_NOT_INSTALLED_AUR[*]}}"
+    echo_err "Your installation missing packages:\n ${PKG_NOT_INSTALLED[*]} ${PKG_NOT_INSTALLED_AUR[*]}"
     return 1
   fi
   return 0
@@ -103,11 +103,11 @@ install_packages() {
   echo_info "Proceeding Installation"
   case $PKG_DISTRO_NAME in
   *Manjaro*|*Arch*)
-    sudo pacman -Sy $PKG_NOT_INSTALLED
-    sudo yaourt -Sy $PKG_NOT_INSTALLED_AUR
+    sudo pacman -Sy ${PKG_NOT_INSTALLED[@]}
+    sudo yaourt -Sy ${PKG_NOT_INSTALLED_AUR[@]}
   ;;
   *Ubuntu*|*Debian*|*Mint*)
-    sudo apt install -y $PKG_NOT_INSTALLED
+    sudo apt install -y ${PKG_NOT_INSTALLED[@]}
   ;;
   *)
     echo_err "Your distro not supported! Try launch with --skip-pkg flag to ignore this step.\n Be Patient: absence of packages may lead to broken installation. In this case install packages and clean ./out folder."
@@ -121,4 +121,3 @@ check_packages
 if [ "$?" == "2" ]; then
     install_packages
 fi
-
